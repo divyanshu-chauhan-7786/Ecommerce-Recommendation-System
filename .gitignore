@@ -1,0 +1,56 @@
+# =============================
+# Python & Flask Project Ignore
+# =============================
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb_save
+
+# Operating System Junk Files
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# =============================
+# ML / DATA FILES (LARGE FILES)
+# =============================
+
+# Dense TF-IDF vectors (Very large file)
+tfidf_vectors.npy
+
+# FAISS index
+faiss_index.bin
+
+# Cleaned dataset (large)
+products_cleaned.csv
+
+# Raw data folders — IGNORE BOTH
+product/
+review/
+
+# All CSV / NPY (except model pickle)
+*.csv
+*.npy
+*.npz
+
+# Image embeddings files
+image_embeddings.npy
+valid_indices.npy
+
+# Temporary / Backup files
+*.tmp
+*.bak
+*.swp

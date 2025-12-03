@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Recommendation System</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <style>
+    
+        .features {
+            padding: 80px 0;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="logo-text">Smart<span>Recs</span></div>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI-Powered Product Recommendations</h1>
+                <p class="hero-subtitle">Search any product and get instant AI-powered recommendations tailored just for you</p>
+                
+                <div class="search-container">
+                    <form action="/search" method="POST" class="search-form" id="searchForm">
+                        <input type="text" name="query" class="search-input" placeholder="Search for mobiles, shoes, laptops, cameras..." required>
+                        <button type="submit" class="search-btn" id="searchBtn">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </form>
+                    <p class="search-hint">Try: "smartphone", "running shoes", "wireless headphones"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 36px; font-weight: 700; color: var(--text-dark);">Why Choose Our Recommender</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI-Powered</h3>
+                        <p>Our system uses advanced machine learning algorithms to understand product similarities and provide accurate recommendations.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Get recommendations in milliseconds using FAISS for efficient similarity search across thousands of products.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Personalized</h3>
+                        <p>Recommendations are tailored based on product features, categories, and user preferences for a personalized experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works" style="background-color: #f8f9fa; padding: 80px 0;">
+        <div class="container">
+            <h2 class="text-center mb-5" style="font-size: 36px; font-weight: 700; color: var(--text-dark);">How It Works</h2>
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div style="background-color: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow);">
+                        <h3 class="mb-4" style="color: var(--primary-color);">Three Simple Steps</h3>
+                        
+                        <div class="mb-4" style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="background-color: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</div>
+                            <div>
+                                <h4>Search for a Product</h4>
+                                <p style="color: var(--text-light);">Enter the name of any product you're interested in.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4" style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="background-color: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</div>
+                            <div>
+                                <h4>Browse Results</h4>
+                                <p style="color: var(--text-light);">View the search results with detailed product information.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <div style="background-color: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</div>
+                            <div>
+                                <h4>Get Similar Products</h4>
+                                <p style="color: var(--text-light);">Click "Find Similar" to get AI-powered recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div style="text-align: center;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" alt="How it works" style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SmartRecs</h3>
+                    <p>An AI-powered e-commerce recommendation system that helps you discover products you'll love using advanced machine learning techniques.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Technologies Used</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Flask (Python Backend)</a></li>
+                        <li><a href="#">FAISS (Similarity Search)</a></li>
+                        <li><a href="#">TF-IDF (Text Processing)</a></li>
+                        <li><a href="#">Bootstrap 5 (UI Framework)</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 SmartRecs - E-Commerce Recommendation System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for loading animation -->
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function() {
+            const searchBtn = document.getElementById('searchBtn');
+            searchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+            searchBtn.disabled = true;
+        });
+    </script>
+</body>
+</html>

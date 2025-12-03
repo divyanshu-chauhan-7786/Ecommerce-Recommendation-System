@@ -1,0 +1,5 @@
+Flask==3.0.0
+numpy==1.26.0
+pandas==2.2.1
+faiss-cpu==1.7.4
+scikit-learn==1.7.2
